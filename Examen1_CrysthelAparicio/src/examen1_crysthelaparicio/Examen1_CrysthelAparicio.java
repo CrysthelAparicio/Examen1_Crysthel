@@ -5,10 +5,14 @@
  */
 package examen1_crysthelaparicio;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -80,6 +84,7 @@ public class Examen1_CrysthelAparicio {
                         }
                         raiz.setDocumentos(lista);
 //                        actual = raiz;
+                            crear();
                     }
                     if (opcion2 == 5) {
                         System.out.println(actual);
@@ -115,5 +120,33 @@ public class Examen1_CrysthelAparicio {
             return w / promediopares(a, p + 1);
         }
 
+    }
+    
+    public class Crear_Carpetas_Y_Archivos{
+        String carpetas = "C:\\Users\\COPECO -13\\Desktop\\Examen1_Crysthel\\Guardado\\nueva";
+        String archivo = "Archivo1.txt";
+    }
+    
+    public static void crear(){
+        String carpetas = "C:\\Users\\COPECO -13\\Desktop\\Examen1_Crysthel\\Guardado\\nueva";
+        File crea_carpeta = new File(carpetas);
+        String archivo = "Archivo1.txt";
+        File crea_archivo = new File(carpetas+archivo);
+        
+        if(crea_archivo.exists()){
+            JOptionPane.showMessageDialog(null, "El archivo ya existe");
+        }else{
+            JOptionPane.showMessageDialog(null, "No existen pero se crearan");
+            crea_carpeta.mkdirs();
+            try {
+                if(crea_archivo.createNewFile()){
+                     JOptionPane.showMessageDialog(null, "Archivos Creados");
+                }else{
+                    JOptionPane.showMessageDialog(null, "Archivos No Creados");
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Examen1_CrysthelAparicio.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }
