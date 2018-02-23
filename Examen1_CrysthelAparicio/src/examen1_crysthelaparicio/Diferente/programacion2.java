@@ -27,7 +27,7 @@ public class programacion2 {
 
     public static void main(String[] args) {
         char resp = 's';
-        String nuevo;
+        String nuevo = null;
 
         System.out.println("Ingrese nombre:");
         String nombre = sc.next();
@@ -62,15 +62,46 @@ public class programacion2 {
                 }
                 if (nuevo.contains(b)) {
                     //crear texto
+                    String comando = "";
+                    String nombrecarpeta = "";
+                    String sizecarpeta = "";
+                    ArrayList<Object> lista = new ArrayList();
 
+                    System.out.println("Ingrese un nombre: ");
+                    String name = sc.next();
+                    System.out.println("Ingrese su nombre de usuario: ");
+                    String user = sc.next();
+                    System.out.println("Ingrese el size: ");
+                    int size = sc.nextInt();
+                    lista.add(new SistemaArchivos(nombre, usuario, size));
+
+                    System.out.print(usuario + "/" + "root" + "/");
+                    sc.nextLine();
+                    comando = sc.nextLine();
+                    String comando2 = comando.substring(0, 5);
+                    if ("mkdir".equalsIgnoreCase(comando2)) {
+                        String[] palabra = comando.split("\n");
+                        for (String direccion : palabra) {
+                            System.out.println(direccion);
+                        }
+//            StringTokenizer st = new StringTokenizer(comando, " ");
+//            System.out.println(st.countTokens());
+//            while (st.hasMoreTokens()) {
+//                nombrecarpeta = st.nextToken();
+
+                    }
+//            lista.add(new Archivo(nombrecarpeta, Integer.parseInt(sizecarpeta)));
+//            System.out.println("Se ha creado la carpeta satisfactoriamente.");
                 }
-                if (nuevo.contains(c)) {
-                    //crear ejecutable
-                }
-//            ...
+
             }
 
         }
-
+        CharSequence c = null;
+        if (nuevo.contains(c)) {
+            //crear ejecutable
+        }
+//            ...
     }
+
 }

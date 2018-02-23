@@ -32,65 +32,9 @@ public class Examen1_CrysthelAparicio {
 
         //Crear nuevo directorio
         //File directorio = new File("directorio de ejemplo");
-        //Comprobar si un directorio existe
-        if (directorio.exists()) {
-            System.out.println("El directorio ya existe");
-        } else {
-            System.out.println("El directorio no existe");
-        }
-
-        //Comprobando si una ruta es un directorio
-        if (!directorio.exists()) {
-            directorio.mkdir();
-            if (directorio.isDirectory()) {
-                System.out.println(directorio + "es un directorio");
-            }
-        }
-
-        //Listar el Contenido del Directorio
-        for (int i = 0; i < 4; i++) {
-            File dir = new File(directorio + "/directorio" + i);
-            if (dir.mkdir()) {
-                System.out.println("Directorio" + dir + "creado");
-            }
-        }
-        String[] listadoDirectorios = directorio.list();
-        for (String filename : listadoDirectorios) {
-            System.out.println(filename);
-        }
-
-        //Comprobando que un directorio esta vacio
-        if (directorio.list().length == 0) {
-            System.out.println("El directorio esta vacio");
-        } else {
-            System.out.println("El directorio no esta vacio");
-        }
-
-        //Eliminar Directorio
-        eliminarRecursivamente(directorio);
-        System.out.println("");
-
         //Copiando Directorios
         //Renombrar Directorios
         File nuevoDirectorio = null;
-
-        if (directorio.exists()) {
-            directorio.renameTo(nuevoDirectorio = new File("directorio de ejemplo renombrado"));
-            System.out.println("El nuevo nombre/ruta es" + nuevoDirectorio.getAbsolutePath());
-
-        } else {
-            System.out.println("El directorio origen/destino no existe o es un directorio");
-        }
-
-        //cambiando la ruta de un directorio
-        File directorioM = new File("directorio de ejemplo renombrado");
-
-        if (directorio.exists()) {
-            directorio.renameTo(nuevoDirectorio = new File("C:\\Users\\COPECO -13\\Desktop\\Examen1_Crysthel\\Guardado\\nueva"));
-            System.out.println("El nuevo nombre/ruta es: " + nuevoDirectorio.getAbsolutePath());
-        } else {
-            System.out.println("El director origen/destino no existe o no es un directorio");
-        }
 
         //////////////////////////////////
         Scanner input = new Scanner(System.in);
@@ -174,14 +118,17 @@ public class Examen1_CrysthelAparicio {
             }
             if (opcion.equalsIgnoreCase("c")) {
                 int opcion3 = 0;
-                while (opcion3 != 7) {
+                while (opcion3 != 10) {
                     opcion3 = Integer.parseInt(JOptionPane.showInputDialog("1. Iniciar un Directorio\n"
                             + "2. Crear Directorios\n"
                             + "3. Otra manera de crear directorios\n"
-                            + "4. Crear una Carpeta\n"
-                            + "5. Listar directorio Actual\n"
-                            + "6. Listar todo el File System\n"
-                            + "7. Salir!\n"));
+                            + "4. Comprobar si un directorio existe\n"
+                            + "5. Comprobar si la ruta de un directorio existe\n"
+                            + "6. Listar el contenido del directorio\n"
+                            + "7. Comprobando si un directorio esta vacio\n"
+                            + "8. Eliminar Directorio\n"
+                            + "9. Cambiando la ruta de un directorio\n"
+                            + "10. Salir!\n"));
                     if (opcion3 == 1) {
                         //DIRECTORIOS
                         String separator = File.separator;
@@ -204,6 +151,76 @@ public class Examen1_CrysthelAparicio {
                             System.out.println("Directorio creado en " + directorioN.getAbsolutePath());
                         }
                         System.out.println("");
+                    }
+
+                    if (opcion3 == 4) {
+                        //Comprobar si un directorio existe
+                        File directorio = new File("directorio de ejemplo");
+                        if (directorio.exists()) {
+                            System.out.println("El directorio ya existe");
+                        } else {
+                            System.out.println("El directorio no existe");
+                        }
+                    }
+                    if (opcion3 == 5) {
+                        //Comprobando si una ruta es un directorio
+                        File directorio = new File("directorio de ejemplo");
+                        if (!directorio.exists()) {
+                            directorio.mkdir();
+                            if (directorio.isDirectory()) {
+                                System.out.println(directorio + "es un directorio");
+                            }
+                        }
+                    }
+                    if (opcion3 == 6) {
+                        File directorio = new File("directorio de ejemplo");
+                        //Listar el Contenido del Directorio
+                        for (int i = 0; i < 4; i++) {
+                            File dir = new File(directorio + "/directorio" + i);
+                            if (dir.mkdir()) {
+                                System.out.println("Directorio" + dir + "creado");
+                            }
+                            System.out.println("");
+
+                            String[] listadoDirectorios = directorio.list();
+                            for (String filename : listadoDirectorios) {
+                                System.out.println(filename);
+                            }
+                        }
+                    }
+                    if (opcion3 == 7) {
+                        File directorio = new File("directorio de ejemplo");
+                        //Comprobando que un directorio esta vacio
+                        if (directorio.list().length == 0) {
+                            System.out.println("El directorio esta vacio");
+                        } else {
+                            System.out.println("El directorio no esta vacio");
+                        }
+                    }
+                    if (opcion3 == 8) {
+                        File directorio = new File("directorio de ejemplo");
+                        //Eliminar Directorio
+                        eliminarRecursivamente(directorio);
+                        System.out.println("");
+                        if (directorio.exists()) {
+                            directorio.renameTo(nuevoDirectorio = new File("directorio de ejemplo renombrado"));
+                            System.out.println("El nuevo nombre/ruta es" + nuevoDirectorio.getAbsolutePath());
+
+                        } else {
+                            System.out.println("El directorio origen/destino no existe o es un directorio");
+                        }
+                    }
+                    if (opcion3 == 9) {
+                        //cambiando la ruta de un directorio
+                        File directorio = new File("directorio de ejemplo");
+                        File directorioM = new File("directorio de ejemplo renombrado");
+
+                        if (directorio.exists()) {
+                            directorio.renameTo(nuevoDirectorio = new File("C:\\Users\\COPECO -13\\Desktop\\Examen1_Crysthel\\Guardado\\nueva"));
+                            System.out.println("El nuevo nombre/ruta es: " + nuevoDirectorio.getAbsolutePath());
+                        } else {
+                            System.out.println("El director origen/destino no existe o no es un directorio");
+                        }
                     }
 
                 }
@@ -267,6 +284,7 @@ public class Examen1_CrysthelAparicio {
     }
 
     public static void copiarDirectorio() {
+        /*
         String nombreDirectorioOrigen = Teclado.LeerCadena("Introduzca el nombre del directorio origen: ");
         File directorioOrigen = new File(nombreDirectorioOrigen);
         String nombreDirectorioDestino = Teclado.LeerCadena("Instroduzca el nombre del directorio destino: ");
@@ -281,6 +299,7 @@ public class Examen1_CrysthelAparicio {
                 e.printStackTrace();
             }
         }
+         */
     }
 
     public static void copiarCarpeta(File src, File dest) throws IOException {
