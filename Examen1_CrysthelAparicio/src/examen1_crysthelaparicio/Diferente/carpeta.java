@@ -19,8 +19,8 @@ public class carpeta extends Archivos {
     public carpeta() {
     }
 
-    public carpeta(String nombre, int tamaño, Date fechacreacion, Date fechamodificacion) {
-        super(nombre, tamaño, fechacreacion, fechamodificacion);
+    public carpeta(String nombre, int tamaño, Date fechacreacion, Date fechamodificacion, carpeta perteneceA) {
+        super(nombre, tamaño, fechacreacion, fechamodificacion, perteneceA);
     }
 
     public ArrayList<Archivos> getListaarchivos() {
@@ -34,6 +34,14 @@ public class carpeta extends Archivos {
     @Override
     public String toString() {
         return "carpeta{" + "listaarchivos=" + listaarchivos + '}';
+    }
+
+    int size() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    Date modificar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

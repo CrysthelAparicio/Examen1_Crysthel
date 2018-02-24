@@ -13,26 +13,32 @@ import java.util.Date;
  */
 public class archivo_texto extends Archivos {
 
-    private String nombrearchivotext;
+    private String contenido;
 
     public archivo_texto() {
     }
 
-    public archivo_texto(String nombrearchivotext, String nombre, int tamaño, Date fechacreacion, Date fechamodificacion) {
-        super(nombre, tamaño, fechacreacion, fechamodificacion);
-        this.nombrearchivotext = nombrearchivotext;
+    public archivo_texto(String contenido, String nombre, int tamaño, Date fechacreacion, Date fechamodificacion, carpeta perteneceA) {
+        super(nombre, tamaño, fechacreacion, fechamodificacion, perteneceA);
+        this.contenido = contenido;
     }
 
     public String getNombrearchivotext() {
-        return nombrearchivotext;
+        return contenido;
     }
 
     public void setNombrearchivotext(String nombrearchivotext) {
-        this.nombrearchivotext = nombrearchivotext;
+        this.contenido = nombrearchivotext;
     }
 
     @Override
     public String toString() {
-        return "archivo_texto{" + "nombrearchivotext=" + nombrearchivotext + '}';
+        return "archivo_texto{" + "nombrearchivotext=" + contenido + '}';
     }
+    
+    public Date modificar(){
+        Date fecha = new Date();
+        return fecha;
+    }
+
 }

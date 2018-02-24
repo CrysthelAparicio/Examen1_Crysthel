@@ -11,21 +11,23 @@ import java.util.Date;
  *
  * @author COPECO -13
  */
-public class Archivos {
+public abstract class Archivos {
 
     private String nombre;
     private int tamaño;
     private Date fechacreacion;
     private Date fechamodificacion;
+    protected carpeta perteneceA;
 
     public Archivos() {
     }
 
-    public Archivos(String nombre, int tamaño, Date fechacreacion, Date fechamodificacion) {
+    public Archivos(String nombre, int tamaño, Date fechacreacion, Date fechamodificacion, carpeta perteneceA) {
         this.nombre = nombre;
         this.tamaño = tamaño;
         this.fechacreacion = fechacreacion;
         this.fechamodificacion = fechamodificacion;
+        this.perteneceA = perteneceA;
     }
 
     public String getNombre() {

@@ -24,6 +24,10 @@ public class Archivo extends Fichero {
         this.contenido = contenido;
     }
 
+    public Archivo(String nombrecarpeta, int parseInt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public String getContenido() {
         return contenido;
     }

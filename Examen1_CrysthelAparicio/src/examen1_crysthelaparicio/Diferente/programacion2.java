@@ -5,6 +5,12 @@
  */
 package examen1_crysthelaparicio.Diferente;
 
+import examen1_crysthelaparicio.Archivo;
+import examen1_crysthelaparicio.Carpeta;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -16,92 +22,106 @@ import java.util.Scanner;
 public class programacion2 {
 
     static Scanner sc = new Scanner(System.in);
+    static ArrayList list = new ArrayList();
     static ArrayList<Archivos> archivos = new ArrayList();
     static ArrayList<carpeta> Carpeta = new ArrayList();
-//static Date fechacreacion;
-//static Date fechamodificacion;
     static Date fechacreacion = new Date();
     static Date fechamodificacion = new Date();
     static carpeta carpeta = new carpeta();
-    static String comando1 = "mkdir", comando2 = "cat";
+    static String comando1 = "mkdir", comando2 = "cat", comando3="ls";
 
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
-        char resp = 's';
-        String nuevo = null;
+        carpeta root = new carpeta();
+        carpeta actual;
+        actual = root;
 
-        System.out.println("Ingrese nombre:");
+        char resp = 's';
+        String nuevo;
+
+        System.out.println("Ingrese un nombre:");
         String nombre = sc.next();
-        System.out.println("Ingrese usuario");
+        System.out.println("Ingrese un usuario");
         String usuario = sc.next();
-        System.out.println("Capacidad de bytes");
+        System.out.println("Capacidad de bytes o tamaño");
         int bytes = sc.nextInt();
         Date fecha1 = fechacreacion;
         System.out.println(fecha1);
+        String opcion1 = "";
 
-////crear capetaRaiz
-        archivos.add(new carpeta("root", bytes, fecha1, fechamodificacion));
+        archivos.add(new carpeta("root", bytes, fechacreacion, fechamodificacion, actual));
         for (int i = 0; i < archivos.size(); i++) {
 
             System.out.print(usuario + "/" + archivos.get(i).getNombre());
 
-            while (resp == 's') {
-                nuevo = sc.next();
-                String a = "mkdir", b = ".txt", c = ".exec";
-                if (nuevo.contains(a)) {
-                    //crear carpeta
+            nuevo = sc.next();
+            String a = "mkdir", b = ".txt", c = ".exec", d = "cd..", e = "cd", f = "del", g = "Is", h= "del";
+            if (nuevo.contains(a)) {
 
-//        //Segunda forma, StringTokenizer
-//       
-//        StringTokenizer st=new StringTokenizer(nuevo," ");
-//        JOptionPane.showMessageDialog(null, st.nextToken() );
-//        while (st.hasMoreElements()) {
-//            Object nextElement = st.nextElement();
-//            System.out.println(nextElement);
-                    Carpeta.add(new carpeta(nombre, i, fechacreacion, fechamodificacion));
+                String nombrecarpeta = nuevo.split(a)[1];
+                Date fecha = new Date();
+                archivos.add(new carpeta(nombrecarpeta, 10, fecha, fecha, actual));
 
-                }
-                if (nuevo.contains(b)) {
-                    //crear texto
-                    String comando = "";
-                    String nombrecarpeta = "";
-                    String sizecarpeta = "";
-                    ArrayList<Object> lista = new ArrayList();
-
-                    System.out.println("Ingrese un nombre: ");
-                    String name = sc.next();
-                    System.out.println("Ingrese su nombre de usuario: ");
-                    String user = sc.next();
-                    System.out.println("Ingrese el size: ");
-                    int size = sc.nextInt();
-                    lista.add(new SistemaArchivos(nombre, usuario, size));
-
-                    System.out.print(usuario + "/" + "root" + "/");
-                    sc.nextLine();
-                    comando = sc.nextLine();
-                    String comando2 = comando.substring(0, 5);
-                    if ("mkdir".equalsIgnoreCase(comando2)) {
-                        String[] palabra = comando.split("\n");
-                        for (String direccion : palabra) {
-                            System.out.println(direccion);
+            }
+            if (nuevo.contains(b)) {
+                String nom = nuevo.split(b)[0];
+                String nombretxt = nom.split("cat")[1];
+                Date fecha = new Date();;
+                System.out.print("ingrese contenido:");
+                String contenido = sc.next();
+                archivos.add(new archivo_texto(contenido, nombretxt, 10, fecha, fecha, actual));
+            }
+            if (nuevo.contains(c)) {
+                String nom = nuevo.split(c)[0];
+                String nombrexec = nom.split("cat")[1];
+                Date fecha = new Date();
+                System.out.println("Ingrese sistema operativo al que pertenece");
+                String sistemop = sc.next();
+                System.out.print("ingrese contenido:");
+                String contenido = sc.next();
+                String cadena = "";
+                if (contenido.contains("0")) {
+                    for (int j = 0; j < contenido.length(); j++) {
+                        if (contenido.charAt(j) != '0') {
+                            cadena += contenido.charAt(j);
                         }
-//            StringTokenizer st = new StringTokenizer(comando, " ");
-//            System.out.println(st.countTokens());
-//            while (st.hasMoreTokens()) {
-//                nombrecarpeta = st.nextToken();
-
                     }
-//            lista.add(new Archivo(nombrecarpeta, Integer.parseInt(sizecarpeta)));
-//            System.out.println("Se ha creado la carpeta satisfactoriamente.");
+                }
+                System.out.println(cadena);
+                archivos.add(new ejecutable(cadena, sistemop, nombrexec, 10, fecha, fecha, actual));
+
+            }
+            if (nuevo.contains(f)) {
+                String ar = nuevo.split(f)[1];
+                for (int j = 0; j < archivos.size(); j++) {
+                    if (archivos.get(i).getNombre().equals(ar)) {
+                        archivos.remove(j);
+                    }
                 }
 
             }
+            if (nuevo.contains(g)) {
+                String cadena = "";
+                for (int j = 0; j < archivos.size(); j++) {
+                    cadena += archivos.get(i) + "\n";
+                }
+                System.out.println(cadena);
+            }
+
+            if (nuevo.contains(h)) {
+                String mod = nuevo.split(h)[1];
+                for (int j = 0; j < archivos.size(); j++) {
+                    if(Carpeta.get(i).getNombre().equals(mod)){
+                        Date fechacreacion = carpeta.modificar();
+                        //((carpeta)Carpeta.get(i).setFechacreacion(fechacreacion));
+                    }
+                }
+              
+                }
+            }
 
         }
-        CharSequence c = null;
-        if (nuevo.contains(c)) {
-            //crear ejecutable
-        }
-//            ...
+
     }
-
-}

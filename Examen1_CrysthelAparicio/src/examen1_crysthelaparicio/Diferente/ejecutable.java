@@ -19,8 +19,8 @@ public class ejecutable extends Archivos {
     public ejecutable() {
     }
 
-    public ejecutable(String texto, String sistema_operativo, String nombre, int tamaño, Date fechacreacion, Date fechamodificacion) {
-        super(nombre, tamaño, fechacreacion, fechamodificacion);
+    public ejecutable(String texto, String sistema_operativo, String nombre, int tamaño, Date fechacreacion, Date fechamodificacion, carpeta perteneceA) {
+        super(nombre, tamaño, fechacreacion, fechamodificacion, perteneceA);
         this.texto = texto;
         this.sistema_operativo = sistema_operativo;
     }
